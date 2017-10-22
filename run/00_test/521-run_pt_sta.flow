@@ -1,0 +1,39 @@
+proc 521-run_pt_sta args {
+
+.header	TITLE		"RUN PrimeTime STA"
+.header	VERSION		2017.0901
+.header	TOOL		pt_shell
+
+; liberty timing model
+.model	ccsb_db
+.model  lib_db
+
+.input	V_FILE		design.v 
+.input	SDC_FILE	design.sdc
+.input	SPEF_FILE	design.spef.gz
+
+.output	SDF_FILE	design.sdf
+
+.report	PT_LOG		pt.log
+.report	ANNOT_LOG	annotation.log
+.report	STA_RPT		report/sta_summary.rpt
+.report	SETUP_VIO	report/setup_vio.rpt
+.report	HOLD_VIO	report/hold_vio.rpt
+
+.option	STA_MODE	setup
+.option	SDC_MODE	func
+.option	VIO_COUNT	1000
+.option	OCV_MODE	AOCV
+
+.target run		RUN_CMD
+.target report		POST_CHECK
+.target dqi		EXTRACT_DQI
+
+.target PRE_CHECK	{$(_FLOW_INPUTS)}	"00_run_pre_check.cmd"
+.target RUN_CMD		{PRE_CHECK}		"01_run_pt_sta.cmd"
+.target POST_CHECK	{$(_FLOW_OUTPUTS)}	"02_run_post_check.cmd"
+.target EXTRACT_DQI	{$(STA_RPT) $(SETUP_VIO) $(HOLD_VIO)}	
+
+.command EXTRACT_DQI	"03_run_extract_dqi.cmd"
+
+}

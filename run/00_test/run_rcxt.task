@@ -1,0 +1,24 @@
+task	run_rcxt args {
+
+.checkout P1-trial/chip/000-DATA/2017_0910-xxx
+.checkin  P1-trial/chip/500-SINGOFF/2017_0910-xxx
+
+.input	DEF_FILE	src/design.def
+.output SPEF_FILE	design.spef.gz
+
+.subflow rcxt_1		{
+-flow	511-run_star_rcxt
+-option {
+	MAX_CAP		0.1
+} 
+-input {
+	DEF_FILE	$DEF_FILE
+	} 
+-ouput {
+	SPEF_FILE	$SPEF_FILE
+	} 
+-report {
+	} 
+};
+
+}

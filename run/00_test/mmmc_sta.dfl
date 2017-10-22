@@ -1,0 +1,57 @@
+option	corner_id	= 001;
+option	corner_rc	= rc_max;
+option	corner_pvt	= TTT_0p75V_n40C;
+option	mode_id		= func;
+
+library liberty:$corner_pvt.lib
+
+input DEF_FILE	= design.def;
+input VLOG_FILE	= design.v;
+input SDC_FILE	= design:$mode_id.sdc;
+
+output	SPEF_FILE	= design:$rc_corner.spef;
+
+report	pt.log
+report	annotation.log
+report  sta.vio
+
+set_list CORNER_RC_LIST  = {rc_typ rc_max};
+set_list CORNER_PVT_LIST = {ttt fff sss};
+set_list SDC_MODE_LIST   = {func scan};
+
+foreach corner_rc  $CORNER_RC_LIST do
+  create_task	rcxt
+	-name	rcxt:$corner_rc 
+	-option {
+		RC_CORNER	$corner_rc 
+		}
+	-input	{
+		DEF_FILE	design.def
+		}
+	-output { 
+		SPEF_FILE	design:$(corner_rc).spef
+		}
+	;
+end
+
+foreach mode_id $SDC_MODE_LIST do
+foreach corner_pvt $CORNER_PVT_LIST do
+foreach corner_rc  $CORNER_RC_LIST do
+  create_task	sta
+	-name	sta:$(mode_id):$corner_pvt):$(corner_rc) 
+	-option	{
+		PVT_CORNER	corner_pvt
+		}
+	-input	{
+		VLOG_FILE	design.v
+		SDC_FILE	design:$(mode_id).sdc
+		SPEF_FILE	design:$(corner_rc).spef
+		}
+	-output	{
+		OUTPUT		design:$(mode_id):$(corner_pvt):$(corner_rc).sdf
+		}
+	;
+end
+end
+end
+	

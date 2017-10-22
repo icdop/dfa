@@ -1,0 +1,6 @@
+_FLOW_TEMPS	= TEMP_FILE
+TEMP_FILE	= temp_file
+
+_FLOW_STEPS	= rcxt_1
+rcxt_1		= 500-SIGNOFF/510:rcxt
+

@@ -1,0 +1,42 @@
+::::::::::::::
+flow.dqi
+::::::::::::::
+dqi:
+	dc_import.tcl xxx.report
+::::::::::::::
+flow.files
+::::::::::::::
+
+_FLOW_INPUTS	= V_FILE SDC_FILE SPEF_FILE
+V_FILE		= design.v
+SDC_FILE	= design.sdc
+SPEF_FILE	= design.spef
+
+_FLOW_OUTPUTS	= SDF_FILE
+SDF_FILE	= design.sdf
+
+_FLOW_REPORTS	= LOG_FILE RPT_STA
+PT_LOG		= pt.log
+ANNOTATION_LOG	= annotation.log
+STA_RPT		= sta.rpt
+
+
+::::::::::::::
+flow.options
+::::::::::::::
+::::::::::::::
+flow.steps
+::::::::::::::
+_FLOW_TEMPS	= TEMP_FILE
+TEMP_FILE	= temp_file
+
+_FLOW_STEPS	=
+::::::::::::::
+flow.targets
+::::::::::::::
+run:
+	touch design.sdf
+	touch sta.rpt
+	touch annotation.log
+	touch pt.log
+

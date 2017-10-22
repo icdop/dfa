@@ -1,0 +1,24 @@
+# input
+_FLOW_INPUTS	= DEF_FILE V_FILE SDC_FILE 
+DEF_FILE	= design.def
+V_FILE		= design.v
+SDC_FILE	= design.sdc
+
+_FLOW_OUTPUTS	= SDF_FILE
+SDF_FILE	= design.sdf
+
+_FLOW_STEPS	:= 
+_FLOW_STEPS	+= RCXT@rc_typ
+RCXT@rc_typ	= 500-SIGNOFF/510:rcxt
+
+_FLOW_STEPS	+= STA@TTT
+STA@TTT		= 520-STA/run_pt
+
+_FLOW_OPTIONS	= corner_id
+corner_id	= 001
+PVT_corner	= TTT_0p80V_25C
+RC_corner	= rc_typ
+
+
+
+

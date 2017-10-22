@@ -1,0 +1,6 @@
+run:
+	touch design.sdf
+	touch sta.rpt
+	touch annotation.log
+	touch pt.log
+

@@ -1,0 +1,32 @@
+proc	511-run_star_rcxt	args {
+
+.header	TITLE		"Run Star-RC Extration"
+.header	VERSION		"2017.0901"
+.header	AUTHOR		"Albert Li"
+
+.args	
+
+.model	RC_TECH		">2017"
+
+.input	DEF_FILE	design.def.gz
+
+.output	SPEF_FILE	design.spef.gz
+
+.report	LOG_FILE	star_rc.log
+.report	OPEN_LOG	open_net.log
+
+.option TOOL		star_rc
+.option	RC_CORNER	rc_typ
+.option	.include	511-run_star_rcxt.option
+
+.target	run		RUN_FLOW 
+.target	report		POST_CHECK
+.target	dqi		EXTRACT_DQI	
+
+.target	PRE_CHECK	{$(_ALL_INPUTS)}	00_run_pre_check.cmd
+.target	RUN_FLOW	PRE_CHECK		01_run_flow.cmd
+.target	POST_CHECK	{$(_ALL_OUTPUS)}	02_run_post_check.cmd
+.target DQI		{$(LOG_FILE)} 		03_run_extract_dqi.cmd
+
+
+}

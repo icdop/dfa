@@ -30,7 +30,7 @@ PSTCHECK	<i>run_postcheck</i>
 END		
 </pre>
 Example:
-<code>
+<pre><code>
   FLOW    401-RCXCT
   INPUT   DEF_FILE  design.def
   OUTPUT  SPEF_FILE design.spef.gz
@@ -60,7 +60,7 @@ Example:
   + SDF_FILE  = SDF_FILE
   ENDSUB
   END
-</code>
+</code></pre>
   
 ## 1. Building Flow run directory
 <pre>

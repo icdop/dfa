@@ -36,15 +36,16 @@ DEFINITION.dfa
 .techlib -> /techlib/xxxx/….		
 .design/		
 .script/		
-.inp$<i>input_ref_id1</i> -> <i>.design/:/:/:/:/<i>input_file_name</i>	
+.inp$<i>input_ref_id1</i> -> .design/:/:/:/:/<i>input_file_name</i>	
 .out$<i>output_ref_id1</i> -> .run/<i>output_file_name</i>
 .tmp$<i>temp_ref_id</i> -> .run/<i>temp_file_name</i>
 .run/
 Makefile
 </pre>
+
 <hr>
-### Example:
-<pre><code>
+### Example: DEFINITION.dfa
+<pre>
   FLOW ->    401-RCXCT
   INPUT   DEF_FILE  design.def
   OUTPUT  SPEF_FILE design.spef.gz
@@ -74,7 +75,7 @@ Makefile
   + SDF_FILE  = SDF_FILE
   ENDSUB
   END
-</code></pre>
+</pre>
 
 <pre>
 DEFINITION.dfa		

@@ -64,11 +64,41 @@ Example:
   
 ## 1. Building Flow run directory
 <pre>
+
 </pre>
+<pre>
+DEFINITION.dfa		
+.dfa/	"SUBFLOW PARAMETER"	
+.techlib -> /techlib/xxxx/….		
+.design/		
+.script/		
+.inp$DEF_FILE -> .design/X/Y/Z/design.def		
+.out$SDF_FILE -> cal_sdf/.out$SDF_FILE		
+.tmp$SPEF_FILE -> rcxt/.out$SPEF_FILE		
+.run/		
+		
+rcxt_spef/	DEFINITION.dfa	
+	.dfa/	"PARAMETER"
+	.techlib -> ../techlib	
+	.design -> ../design	
+	.script/	
+	.inp$DEF_FILE -> ../.inp$DEF_FILE	
+	.out$SPEF_FILE -> .run/$SPEF_FILE	
+	.run/	
+		
+spef2sdf/	DEFINITION.dfa	
+	.dfa/	"PARAMETER"
+	.techlib -> ../techlib	
+	.design -> ../design	
+	.inp$SPEF_FILE -> ../.tmp$SPEF_FILE	
+	.out$SDF_FILE -> .run/$SDF_FILE	
+	.run/	
+</pre>
+
 ## 2. Executing Flow 
-### Link technology library 
-### Checkout input data
-### Execute flow Script
-### Extract Quality Indicator
-### Checkin output data
-### Mark status
++ Link technology library 
++ Checkout input data
++ Execute flow Script
++ Extract Quality Indicator
++ Checkin output data
++ Mark status done

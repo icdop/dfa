@@ -43,7 +43,6 @@ DEFINITION.dfa
 Makefile
 </pre>
 
-<hr>
 ### Example: DEFINITION.dfa
 <pre>
   FLOW ->    401-RCXCT

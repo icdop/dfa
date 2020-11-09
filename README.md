@@ -1,5 +1,6 @@
 # Design Flow Automation
 ## 0. Prepare Flow definition file
+<pre>
 FLOW	<flow_ref_name>	
 		
 INPUT	<input_ref_name1>	<input_file_name>
@@ -26,7 +27,7 @@ EXECDQI
 PSTCHECK	pstcheck.py	
 		
 END		
-
+</pre>
 ## 1. Building Flow run directory
 
 ## 2. Executing Flow 

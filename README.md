@@ -1,31 +1,31 @@
 # Design Flow Automation
 ## 0. Prepare Flow definition file
 <pre>
+# Flow definition file
 FLOW	<i>flow_ref_name</i>	
-		
-INPUT	<input_ref_name1>	<input_file_name>
-INPUT	<input_ref_name2>	<input_dir_name>
-OUTPUT 	<output_ref_name1>	<output_file_name>
-OUTPUT	<output_ref_name2>	<output_dir_name>
-TEMP	<temp_ref_name>	<temp_file_name>
-		
-PARAMETER	<parameter_name>	<default_value>
-		
-SUBFLOW	<subflow_reference>	<subflow_dir_name1>
-+	<input_id>	<input_file_name>
-+	<outpu_id>	<temp_file_name>
+#		
+INPUT	<i>input_ref_name1</i>	<i>input_file_name</i>
+INPUT	<i>input_ref_name2</i>	<i>input_dir_name</i>
+OUTPUT 	<i>output_ref_name1</i>	<i>output_file_name</i>
+OUTPUT	<i>output_ref_name2</i>	<i>output_dir_name</i>
+TEMP	<i>temp_ref_name</i>	<i>temp_file_name</i>
+#
+PARAMETER	<i>parameter_name</i>	<i>default_value</i>
+#		
+SUBFLOW	<i>subflow_reference</i>	<i>subflow_dir_name1</i>
++	<i>input_id</i>	<i>input_file_name</i>
++	<i>outpu_id</i>	<i>temp_file_name</i>
 ENDSUB		
-SUBFLOW	<subflow_reference>	<subflow_dir_name2>
-+	<input_id>	<temp_file_name>
-+	<outpu_id>	<output_file_name>
+SUBFLOW	<i>subflow_reference>	<i>subflow_dir_name2>
++	<i>input_id</i>	<i>temp_file_name</i>
++	<i>outpu_id</i>	<i>output_file_name</i>
 ENDSUB		
-		
-		
+#			
 PRECHECK		
-EXECUTE	run_qrc.tcl	run_star.tcl
+EXECUTE	<i>run_qrc.tcl</i>
 EXECDQI		
 PSTCHECK	pstcheck.py	
-		
+#		
 END		
 </pre>
 ## 1. Building Flow run directory

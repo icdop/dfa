@@ -1,6 +1,5 @@
 # Design Flow Automation
 ## 0. Prepare Flow definition file
-Syntax:
 <pre>
 # Flow definition file (DEFINITION.dfa)
 FLOW	<i>flow_ref_id</i>	
@@ -29,9 +28,24 @@ PSTCHECK	<i>run_postcheck</i>
 #		
 END		
 </pre>
-Example:
+      
+## 1. Building Flow run directory
+<pre>
+DEFINITION.dfa		
+.dfa/	"SUBFLOW PARAMETER"	
+.techlib -> /techlib/xxxx/….		
+.design/		
+.script/		
+.inp$<i>input_ref_id1</i> -> <i>.design/:/:/:/:/<i>input_file_name</i>	
+.out$<i>output_ref_id1</i> -> .run/<i>output_file_name</i>
+.tmp$<i>temp_ref_id</i> -> .run/<i>temp_file_name</i>
+.run/
+Makefile
+</pre>
+<hr>
+### Example:
 <pre><code>
-  FLOW    401-RCXCT
+  FLOW ->    401-RCXCT
   INPUT   DEF_FILE  design.def
   OUTPUT  SPEF_FILE design.spef.gz
   PARAM   rc_corner   Cmax
@@ -61,11 +75,7 @@ Example:
   ENDSUB
   END
 </code></pre>
-  
-## 1. Building Flow run directory
-<pre>
 
-</pre>
 <pre>
 DEFINITION.dfa		
 .dfa/	"SUBFLOW PARAMETER"	
@@ -73,9 +83,10 @@ DEFINITION.dfa
 .design/		
 .script/		
 .inp$DEF_FILE -> .design/X/Y/Z/design.def		
-.out$SDF_FILE -> cal_sdf/.out$SDF_FILE		
+.out$SDF_FILE -> spef2sdf/.out$SDF_FILE		
 .tmp$SPEF_FILE -> rcxt/.out$SPEF_FILE		
-.run/		
+.run/
+Makefile
 		
 rcxt_spef/	DEFINITION.dfa	
 	.dfa/	"PARAMETER"
@@ -84,7 +95,8 @@ rcxt_spef/	DEFINITION.dfa
 	.script/	
 	.inp$DEF_FILE -> ../.inp$DEF_FILE	
 	.out$SPEF_FILE -> .run/$SPEF_FILE	
-	.run/	
+	.run/
+	Makefile
 		
 spef2sdf/	DEFINITION.dfa	
 	.dfa/	"PARAMETER"
@@ -92,7 +104,8 @@ spef2sdf/	DEFINITION.dfa
 	.design -> ../design	
 	.inp$SPEF_FILE -> ../.tmp$SPEF_FILE	
 	.out$SDF_FILE -> .run/$SDF_FILE	
-	.run/	
+	.run/
+	Makefile
 </pre>
 
 ## 2. Executing Flow 

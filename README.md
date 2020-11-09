@@ -1,7 +1,7 @@
 # Design Flow Automation
 ## 0. Prepare Flow definition file
 <pre>
-FLOW	<flow_ref_name>	
+FLOW	<i>flow_ref_name</i>	
 		
 INPUT	<input_ref_name1>	<input_file_name>
 INPUT	<input_ref_name2>	<input_dir_name>

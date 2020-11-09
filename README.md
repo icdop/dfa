@@ -43,22 +43,33 @@ DEFINITION.dfa
 Makefile
 </pre>
 
+## 2. Executing Flow run directory
++ Link technology library 
++ Checkout input data
++ Execute flow Script
++ Extract Quality Indicator
++ Checkin output data
++ Mark status done
+
 ### Example: DEFINITION.dfa
 <pre>
-  FLOW ->    401-RCXCT
+[401-RCXT.dfa]
+  FLOW    401-RCXCT
   INPUT   DEF_FILE  design.def
   OUTPUT  SPEF_FILE design.spef.gz
   PARAM   rc_corner   Cmax
   EXECUTE run_rcxt.tcl
   END
-
+  
+[402-SPEF2SDF.dfa]
   FLOW    402-SPEF2SDF
   INPUT   SPEF_FILE design.spef.gz
   OUTPUT  SDF_FILE  design.sdf.gz
   PARAM   lib_corner WCL
   EXECUTE run_spef2sdf.tcl
   END
-  
+
+[410-DEF2SDF.dfa]
   FLOW    410-DEF2SDF
   INPUT   DEF_FILE  design.def
   OUTPUT  SPEF_FILE design.spef.gz
@@ -76,6 +87,7 @@ Makefile
   END
 </pre>
 
+### Example: Flow Run Directory
 <pre>
 DEFINITION.dfa		
 .dfa/	"SUBFLOW PARAMETER"	
@@ -107,11 +119,3 @@ spef2sdf/	DEFINITION.dfa
 	.run/
 	Makefile
 </pre>
-
-## 2. Executing Flow 
-+ Link technology library 
-+ Checkout input data
-+ Execute flow Script
-+ Extract Quality Indicator
-+ Checkin output data
-+ Mark status done

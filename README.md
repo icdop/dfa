@@ -45,10 +45,15 @@ Makefile
 
 ## 2. Executing Flow run directory
 + Link technology library 
+<code> % make techlib </code>
 + Checkout input data
+<code> % make checkout </code>
 + Execute flow Script
+<code> % make run </code>
 + Extract Quality Indicator
+<code> % make dqi </code>
 + Checkin output data
+<code> % make checkin </code>
 + Mark status done
 
 ### Example: DEFINITION.dfa

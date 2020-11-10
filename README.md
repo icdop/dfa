@@ -1,25 +1,29 @@
 # Design Flow Automation
 ## 1. Prepare Flow Ticket file
-<pre> 
+<pre>
 # Flow Ticket file (T400-XXXX.dfa)
 [HEADER]
 TITLE   =  description of the flow ticket
 TECHLIB =  <i>techlib_config_file</i>
 FLOW_ID =  <i>flow_reference_id</i>
-DVC_SRC =  <i>desin_source_version_path</i>
-DVC_DST =  <i>design_destinamtion_version_path</i>
+DVC_SRC =  <i>design_source_version_path</i>
+DVC_DST =  <i>design_dest_version_path</i>
 DESIGN  =  <i>top_module_name</i>
 RUNDIR  =  <i>ticket_run_dir_name</i>
 
 [INPUT]
 <i>input_ref_id1</i>  = <i>input_file_name</i>
+<i>input_ref_id2</i>  = <i>input_dir_name</i>
 
 [OUTPUT]
 <i>output_ref_id1</i> = <i>output_file_name</i>
+<i>output_ref_id2</i> = <i>output_dir_name</i>
 
 [PARAM]
-PARAM	<i>param_ref_id1</i>  = <i>parameter_value1</i>
-PARAM	<i>param_ref_id2</i>  = <i>parameter_value2</i>
+<i>param_ref_id1</i>  = <i>parameter_value1</i>
+<i>param_ref_id2</i>  = <i>parameter_value2</i>
+...
+
 </pre>
 <hr>
 <pre>

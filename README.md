@@ -36,19 +36,15 @@ END
   % dfa_build_rundir <i>FlowDefinitionFile</i>
 </pre>
 <pre>
+.dfa/	"DEFINITION SUBFLOW PARAMETER script/"	
+.inp$<i>input_ref_id1</i>  -> ::main/<i>input_file_name</i>	
+.out$<i>output_ref_id1</i> -> ::main/<i>output_file_name</i>
 Makefile
-DEFINITION.dfa		
-.dfa/	"SUBFLOW PARAMETER"	
-.techlib -> /techlib/<i>techlib_id</i>/
-.design -> /projects/<i>proj_id</i>/designDB/
-.inp$<i>input_ref_id1</i> -> .design/:/:/:/:/<i>input_file_name</i>	
-.out$<i>output_ref_id1</i> -> _main/<i>output_file_name</i>
-.script/
-_main/
-  Makefile
-  techlib -> ../.techlib
-  script -> ../.script
-  <i>input_file_name</i> -> ../.inp$<i>input_ref_id1</i>
+techlib -> /techlib/<i>techlib_id</i>/
+design/
+::main/
+	Makefile
+	<i>input_file_name</i> -> ../.inp$<i>input_ref_id1</i>
 </pre>
 
 ## 2. Executing Flow run directory
@@ -104,33 +100,33 @@ _main/
 
 ### Example: Flow Run Directory
 <pre>
+.dfa/	"DEFINITION PARAMETER script"	
+.inp$DEF_FILE  -> ::main/design.def	
+.out$SPEF_FILE -> :401-RXCT:rcxt_spef/.out$SPEF_FILE		
+.out$SDF_FILE  -> :402-SPEF2SDF:spef2sdf/.out$SDF_FILE		
 Makefile
-DEFINITION.dfa		
-.dfa/	"SUBFLOW PARAMETER"	
-.techlib -> /techlib/xxxx/….		
-.design/		
-.script/		
-.inp$DEF_FILE -> design.def	
-.out$SPEF_FILE -> rcxt_spef/.out$SPEF_FILE		
-.out$SDF_FILE -> spef2sdf/.out$SDF_FILE		
-_main/
+techlib -> /techlib/xxxx/….		
+design/		
+::main/
+	design.def -> ../inp$EF_FILE
 		
-rcxt_spef/	DEFINITION.dfa	
-	.dfa/	"PARAMETER"
-	.techlib -> ../.techlib	
-	.design -> ../.design	
-	.script/	
-	.inp$DEF_FILE -> ../.inp$DEF_FILE	
-	.out$SPEF_FILE -> _main/design.spef.gz
-	_main/
+:401-RCXT:rcxt_spef/
+	.dfa/	"DEFINITION PARAMETER script"
+	.inp$DEF_FILE  -> ../.inp$DEF_FILE	
+	.out$SPEF_FILE -> ::main/design.spef.gz
 	Makefile
+	techlib -> ../techlib	
+	design -> ../design	
+	::main/
+		design.def -> ../.inp$DEF_FILE
 		
-spef2sdf/	DEFINITION.dfa	
-	.dfa/	"PARAMETER"
-	.techlib -> ../.techlib	
-	.design -> ../.design	
+:402-SPEF2SDF:spef2sdf/	DEFINITION.dfa	
+	.dfa/	"DEFINITION PARAMETER script"
 	.inp$SPEF_FILE -> ../.out$SPEF_FILE
-	.out$SDF_FILE -> _main/$design.sdf.gz	
-	_main/
+	.out$SDF_FILE -> ::main/$design.sdf.gz	
 	Makefile
+	techlib -> ../techlib	
+	design -> ../design	
+	::main/
+		design.spef.gz -> .../.inp$SPEF_FILE
 </pre>

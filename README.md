@@ -3,13 +3,13 @@
 <pre> 
 # Flow Ticket file (T400-XXXX.dfa)
 [HEADER]
-TITLE   =  <u>description of the flow ticket</u>
-TECHLIB =  <u>techlib configuration file</u>
-FLOW_ID =  <u>flow reference id</u>
-DVC_SRC =  <u>design source data</u>
-DVC_DST =  <u>design data destination</u>
-DESIGN  =  <u>top module name</u>
-RUNDIR  =  <u>ticket run directory name</u>
+TITLE   =  description of the flow ticket
+TECHLIB =  <i>techlib_config_file</i>
+FLOW_ID =  <i>flow_reference_id</i>
+DVC_SRC =  <i>desin_source_version_path</i>
+DVC_DST =  <i>design_destinamtion_version_path</i>
+DESIGN  =  <i>top_module_name</i>
+RUNDIR  =  <i>ticket_run_dir_name</i>
 
 [INPUT]
 <i>input_ref_id1</i>  = <i>input_file_name</i>

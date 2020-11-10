@@ -14,13 +14,13 @@ PARAM	<i>param_ref_id1</i>  =	<i>parameter_value1</i>
 PARAM	<i>param_ref_id2</i>  =	<i>parameter_value2</i>
 #		
 SUBFLOW	<i>subflow_ref_id1</i>	<i>subflow_dir_name1</i>
-+	<i>sf1_input_ref_id</i>	 < <i>input_ref_id1</i>
++	<i>sf1_input_ref_id</i>  < <i>input_ref_id1</i>
 +	<i>sf1_output_ref_id</i> > <i>temp_ref_id</i>
 +	<i>sf1_param_ref_id</i>  = <i>param_ref_id1</i>
 ENDSUB		
 SUBFLOW	<i>subflow_ref_id2</i>	<i>subflow_dir_name2</i>
-+	<i>sf2_input_ref_id</i>	 < <i>temp_ref_id</i>
-+	<i>sf2_outpu_ref_id</i>	 > <i>output_ref_id</i>
++	<i>sf2_input_ref_id</i>  < <i>temp_ref_id</i>
++	<i>sf2_outpu_ref_id</i>  > <i>output_ref_id</i>
 +	<i>sf2_param_ref_id</i>  = <i>param_ref_id2</i>
 ENDSUB		
 #			

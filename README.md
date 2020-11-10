@@ -1,7 +1,29 @@
 # Design Flow Automation
-## 0. Prepare Flow definition file
+## 1. Prepare Flow Ticket file
+<pre> 
+# Flow Ticket file (T400-XXXX.dfa)
+[HEADER]
+TITLE   =  <u>description of the flow ticket</u>
+TECHLIB =  <u>techlib configuration file</u>
+FLOW_ID =  <u>flow reference id</u>
+DVC_SRC =  <u>design source data</u>
+DVC_DST =  <u>design data destination</u>
+DESIGN  =  <u>top module name</u>
+RUNDIR  =  <u>ticket run directory name</u>
+
+[INPUT]
+<i>input_ref_id1</i>  = <i>input_file_name</i>
+
+[OUTPUT]
+<i>output_ref_id1</i> = <i>output_file_name</i>
+
+[PARAM]
+PARAM	<i>param_ref_id1</i>  = <i>parameter_value1</i>
+PARAM	<i>param_ref_id2</i>  = <i>parameter_value2</i>
+</pre>
+<hr>
 <pre>
-# Flow definition file (DEFINITION.dfa)
+# Flow definition file (<i>flow_ref_id</i>.flow)
 FLOW	<i>flow_ref_id</i>	
 #		
 INPUT   <i>input_ref_id1</i>  : <i>input_file_name</i>
@@ -31,7 +53,7 @@ PSTCHECK  <i>run_postcheck</i>
 END		
 </pre>
       
-## 1. Building Flow run directory
+## 2. Building Flow run directory
 <pre>
   % dfa_build_rundir <i>FlowDefinitionFile</i>
 </pre>
@@ -47,7 +69,7 @@ design/
 	<i>input_file_name</i> -> ../.inp$<i>input_ref_id1</i>
 </pre>
 
-## 2. Executing Flow run directory
+## 3. Executing Flow run directory
 + Link technology library .....<t>
 <code> % make techlib </code>
 + Checkout input data .........<t>

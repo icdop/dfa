@@ -44,16 +44,16 @@ Makefile
 </pre>
 
 ## 2. Executing Flow run directory
-+ Link technology library 
-++ <code> % make techlib </code>
-+ Checkout input data
-++ <code> % make checkout </code>
-+ Execute flow Script
-++ <code> % make run </code>
-+ Extract Quality Indicator
-++ <code> % make dqi </code>
-+ Checkin output data
-++ <code> % make checkin </code>
++ Link technology library .....<t>
+<code> % make techlib </code>
++ Checkout input data .........<t>
+<code> % make checkout </code>
++ Execute flow script ............<t>
+<code> % make execute </code>
++ Extract quality indicator ...<t>
+<code> % make dqi </code>
++ Checkin output data .........<t>
+<code> % make checkin </code>
 + Mark status done
 
 ### Example: DEFINITION.dfa

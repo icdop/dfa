@@ -10,8 +10,8 @@ OUTPUT  <i>output_ref_id1</i> = <i>output_file_name</i>
 OUTPUT	<i>output_ref_id2</i> = <i>output_dir_name</i>
 TEMP    <i>temp_ref_id</i>    = <i>temp_file_name</i>
 #
-PARAM	<i>param_ref_id1</i>  =	<i>parameter_value1</i>
-PARAM	<i>param_ref_id2</i>  =	<i>parameter_value2</i>
+PARAM	<i>param_ref_id1</i>  = <i>parameter_value1</i>
+PARAM	<i>param_ref_id2</i>  = <i>parameter_value2</i>
 #		
 SUBFLOW	<i>subflow_ref_id1</i>	<i>subflow_dir_name1</i>
 +	<i>sf1_input_ref_id</i>  < <i>input_ref_id1</i>

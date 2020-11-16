@@ -38,14 +38,14 @@ PARAM	<i>param_ref_id1</i>  = <i>parameter_value1</i>
 PARAM	<i>param_ref_id2</i>  = <i>parameter_value2</i>
 #		
 STEP	<i>subflow_ref_id1</i>	<i>subflow_dir_name1</i>
-+	<i>sf1_input_ref_id</i>  < <i>input_ref_id1</i>
-+	<i>sf1_output_ref_id</i> > <i>temp_ref_id</i>
-+	<i>sf1_param_ref_id</i>  = <i>param_ref_id1</i>
-ENDS		
++	<i>sf1_input_ref_id</i>  = <i>input_ref_id1</i>
+-	<i>sf1_output_ref_id</i> = <i>temp_ref_id</i>
+@	<i>sf1_param_ref_id</i>  = <i>param_ref_id1</i>
+;
 STEP	<i>subflow_ref_id2</i>	<i>subflow_dir_name2</i>
-+	<i>sf2_input_ref_id</i>  < <i>temp_ref_id</i>
-+	<i>sf2_output_ref_id</i> > <i>output_ref_id</i>
-+	<i>sf2_param_ref_id</i>  = <i>param_ref_id2</i>
++	<i>sf2_input_ref_id</i>  = <i>temp_ref_id</i>
+-	<i>sf2_output_ref_id</i> = <i>output_ref_id</i>
+@	<i>sf2_param_ref_id</i>  = <i>param_ref_id2</i>
 ENDS		
 #			
 PRECHECK  <i>run_precheck</i>
@@ -111,16 +111,16 @@ design/
   PARAM   rc_corner = Cmax_WCL
   PARAM   op_corner = WC
   
-  STEP 401-RCXT  rcxt_spef
-  + DEF_FILE  < DEF_FILE
-  + SPEF_FILE > SPEF_FILE
-  + rc_corner = rc_corner
-  ENDS
-  STEP 402-SPEF2SDF spef2sdf
-  + SPEF_FILE < SPEF_FILE
-  + SDF_FILE  > SDF_FILE
-  + op_corner = op_corner
-  ENDS
+  SUBFLOW 401-RCXT  rcxt_spef
+  + DEF_FILE  = $(DEF_FILE)
+  - SPEF_FILE = $(SPEF_FILE)
+  @ rc_corner = $(rc_corner)
+  ;
+  SUBFLOW 402-SPEF2SDF spef2sdf
+  + SPEF_FILE = $(SPEF_FILE)
+  - SDF_FILE  = $(SDF_FILE)
+  @ op_corner = $(op_corner)
+  ;
   
   ENDF
 </pre>

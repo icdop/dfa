@@ -137,15 +137,15 @@ ENDF
   PARAM   op_corner = WC
   
   STEP 510-RCXT  rcxt_spef
-  \+ DEF_FILE  \< $DEF_FILE
-  \+ SPEF_FILE > $SPEF_FILE
-  \@ rc_corner = $rc_corner
+  + DEF_FILE  < $DEF_FILE
+  + SPEF_FILE > $SPEF_FILE
+  @ rc_corner = $rc_corner
   ;
   STEP 511-SPEF2SDF spef2sdf
-  \+ VLOG_FILE \< $VLG_FILE
-  \+ SPEF_FILE \< $SPEF_FILE
-  \+ SDF_FILE  > $SDF_FILE
-  \@ op_corner = $op_corner
+  + VLOG_FILE < $VLG_FILE
+  + SPEF_FILE < $SPEF_FILE
+  + SDF_FILE  > $SDF_FILE
+  @ op_corner = $op_corner
   ;
   
   END

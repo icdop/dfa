@@ -1,0 +1,11 @@
+FLOW    510-RCXT
+  INPUT   DEF_FILE  = design.def
+  OUTPUT  SPEF_FILE = design.spef.gz
+  PARAM   rc_corner = Cmax
+
+  OPTION  TOOL      = 
+  SCRIPT  PRECHECK  =
+  SCRIPT  EXECUTE   = run_rcxt.cmd
+  SCRIPT  POSTCHECK =
+  
+END

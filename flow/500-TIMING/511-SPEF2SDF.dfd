@@ -1,0 +1,7 @@
+FLOW    511-SPEF2SDF
+  INPUT   VLOG_FILE = design.v
+  INPUT   SPEF_FILE = design.spef.gz
+  OUTPUT  SDF_FILE  = design.sdf.gz
+  PARAM   op_corner = WCL
+  EXECUTE run_spef2sdf.tcl
+END

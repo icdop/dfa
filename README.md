@@ -38,15 +38,15 @@ PARAM	<i>parameter_id1</i>  = <i>parameter_value1</i>
 PARAM	<i>parameter_id2</i>  = <i>parameter_value2</i>
 	
 STEP	<i>step_ref_id1</i>	<i>step_dir_name1</i>
-+	<i>sf1_input_ref_id</i>  \< <i>input_ref_id1</i>
-+	<i>sf1_output_ref_id</i> > <i>output_ref_id1</i>
-+	<i>sf1_parameter_id</i>  : <i>parameter_id1</i>
+\+	<i>sf1_input_ref_id</i>  \< <i>input_ref_id1</i>
+\+	<i>sf1_output_ref_id</i> > <i>output_ref_id1</i>
+\@	<i>sf1_parameter_id</i>  = <i>parameter_id1</i>
 ;
 
 STEP	<i>step_ref_id2</i>	<i>step_dir_name2</i>
-+	<i>sf2_input_ref_id</i>  \< <i>output_ref_id1</i>
-+	<i>sf2_output_ref_id</i> > <i>output_ref_id2</i>
-+	<i>sf2_parameter_id</i>  : <i>parameter_id2</i>
+\+	<i>sf2_input_ref_id</i>  \< <i>output_ref_id1</i>
+\+	<i>sf2_output_ref_id</i> > <i>output_ref_id2</i>
+\@	<i>sf2_parameter_id</i>  = <i>parameter_id2</i>
 ;		
 			
 PRECHECK  <i>run_precheck</i>
@@ -137,15 +137,15 @@ ENDF
   PARAM   op_corner = WC
   
   STEP 510-RCXT  rcxt_spef
-  + DEF_FILE  \< $DEF_FILE
-  + SPEF_FILE > $SPEF_FILE
-  + rc_corner = $rc_corner
+  \+ DEF_FILE  \< $DEF_FILE
+  \+ SPEF_FILE > $SPEF_FILE
+  \@ rc_corner = $rc_corner
   ;
   STEP 511-SPEF2SDF spef2sdf
-  + VLOG_FILE \< $VLG_FILE
-  + SPEF_FILE \< $SPEF_FILE
-  + SDF_FILE  > $SDF_FILE
-  + op_corner = $op_corner
+  \+ VLOG_FILE \< $VLG_FILE
+  \+ SPEF_FILE \< $SPEF_FILE
+  \+ SDF_FILE  > $SDF_FILE
+  \@ op_corner = $op_corner
   ;
   
   END

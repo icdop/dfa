@@ -1,31 +1,5 @@
 # Design Flow Automation
-## 1. Prepare Flow Ticket file
-<pre>
-# Flow Ticket file (T400-XXXX.ticket)
-[HEADER]
-TITLE   =  description of the flow ticket
-FLOW_ID =  <i>flow_reference_id</i>:<i>ticket_run_dir</i>
-TECHLIB =  <i>techlib_config_file</i>
-DVC_SRC =  <i>design_source_version_path</i>
-DVC_DST =  <i>design_dest_version_path</i>
-DESIGN  =  <i>top_module_name</i>
-
-[INPUT]
-<i>input_ref_id1</i>  = <i>input_file_name</i>
-<i>input_ref_id2</i>  = <i>input_dir_name</i>
-
-[OUTPUT]
-<i>output_ref_id1</i> = <i>output_file_name</i>
-<i>output_ref_id2</i> = <i>output_dir_name</i>
-
-[PARAM]
-<i>parameter_id1</i>  = <i>parameter_value1</i>
-<i>parameter_id2</i>  = <i>parameter_value2</i>
-...
-
-</pre>
-<hr>
-<pre>
+## 1. Create Design Flow Defintion file
 # Design Flow Definition File (<i>flow_ref_id</i>.dfd)
 FLOW	<i>flow_ref_id</i>
 	
@@ -48,18 +22,22 @@ STEP	<i>step_ref_id2</i>	<i>step_dir_name2</i>
 \+	<i>sf2_output_ref_id</i> > <i>output_ref_id2</i>
 \@	<i>sf2_parameter_id</i>  = <i>parameter_id2</i>
 ;		
-			
+
+TOOL <i>tool_command</i>
+TOOL_OPTION <i>tool_option</i>
+QUEUE <i>queue_name</i>
+
 PRECHECK  <i>run_precheck</i>
 EXECUTE	  <i>run_flow_script</i>
 EXECDQI   <i>run_dqi_extraction</i>
 POSTCHECK <i>run_postcheck</i>
 		
-ENDF		
+END FLOW		
 </pre>
       
 ## 2. Building design flow run directory
 <pre>
-  % dfa_build_flow_rundir<i>flow_ref_id</i>
+  % dfa_build_flow_rundir<i>flow_ref_id</i> <i>flow_param_file</i>
 </pre>
 <pre>
 .dfa/	"DEFINITION SUBFLOW PARAMETER script/"
@@ -77,6 +55,7 @@ ENDF
 		INPUT     := <i>input_file_name</i>
 		OUTPUT    := <i>output_file_name</i>
 		PRECHECK  := script/<i>run_precheck</i>
+	    EXECUTE   := <i>$TOOL</i><i>$TOOL_OPTION</i>
 		EXECUTE   := script/<i>run_flow_script</i>
 		POSTCHECK := script/<i>run_postcheck</i>
 		run: precheck
@@ -96,12 +75,8 @@ ENDF
 </pre>
 
 ## 3. Executing Flow run directory
-+ Link technology library .....<t>
-<code> % make techlib </code>
-+ Checkout input data .........<t>
-<code> % make checkout </code>
 + Execute flow script ............<t>
-<code> % make execute </code>
+<code> % make run </code>
 + Extract quality indicator ..<t>
 <code> % make dqi </code>
 + Checkin output data .........<t>

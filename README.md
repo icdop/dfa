@@ -1,6 +1,7 @@
 # Design Flow Automation
 ## 1. Create Design Flow Defintion file
 # Design Flow Definition File (<i>flow_ref_id</i>.dfd)
+<pre>
 FLOW	<i>flow_ref_id</i>
 	
 INPUT   <i>input_ref_id1</i>  = <i>input_file_name</i>

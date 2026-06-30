@@ -28,6 +28,8 @@ TOOL <i>tool_command</i>
 TOOL_OPTION <i>tool_option</i>
 QUEUE <i>queue_name</i>
 
+DQI <i>dqi_id</i><i>extract_dqi_script</i>
+
 PRECHECK  <i>run_precheck</i>
 EXECUTE	  <i>run_flow_script</i>
 EXECDQI   <i>run_dqi_extraction</i>

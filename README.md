@@ -1,6 +1,6 @@
 # Design Flow Automation
-## 1. Create Design Flow Defintion file
-# Design Flow Definition File (<i>flow_ref_id</i>.dfd)
+## 1. Checkout Design Flow Skill
+# Design Flow Definition File Format(<i>flow_ref_id</i>.dfd)
 <pre>
 FLOW	<i>flow_ref_id</i>
 	
@@ -80,9 +80,7 @@ END FLOW
 <code> % make run </code>
 + Extract quality indicator ..<t>
 <code> % make dqi </code>
-+ Checkin output data .........<t>
-<code> % make checkin </code>
-+ Mark status done
++ Review DQI & Mark status done
 
 ### Example: DEFINITION
 <pre>

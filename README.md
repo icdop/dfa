@@ -1,5 +1,67 @@
 # Design Flow Automation
-## 1. Checkout Design Flow Skill
+## 1. Design Flow Stage Name
+<pre>
+;FLOW_ID        DESCRIPTION
+;============	========================== 
+000-DATA        "Initial Design Data"
+100-CIRCUIT	    "Circuit Design" 
+200-FUNCTION    "Functional Design"
+300-DFT         "Design For Test"
+400-APR         "Auto Place & Route"
+500-TIMING      "Timing Signoff"
+600-POWER       "Power Signoff"
+700-TAPEOUT     "Tapeout Stage"
+800-PACKAGE	    "Package Design"
+900-TESTING	    "Production Testing"
+A00-SYSTEM	    "System Validation"
+</pre>
+
+### Example: DESIGN FLOW DEFINITION (.dfd)
+<pre>
+[521-DEF2SDF.dfd]
+  FLOW    521-DEF2SDF
+  INPUT   VLG_FILE  = design.v
+  INPUT   DEF_FILE  = design.def
+  OUTPUT  SPEF_FILE = design.spef.gz
+  OUTPUT  SDF_FILE  = design.sdf.gz
+  PARAM   rc_corner = Cmax_WCL
+  PARAM   op_corner = WC
+  
+  STEP 510-RCXT  rcxt_spef
+  + DEF_FILE  < $DEF_FILE
+  + SPEF_FILE > $SPEF_FILE
+  @ rc_corner = $rc_corner
+  ;
+  STEP 511-SPEF2SDF spef2sdf
+  + VLOG_FILE < $VLG_FILE
+  + SPEF_FILE < $SPEF_FILE
+  + SDF_FILE  > $SDF_FILE
+  @ op_corner = $op_corner
+  ;
+  
+  END
+</pre>	  
+#### Sub Flow Defintion
+<pre>
+[510-RCXT.dfd]
+  FLOW    510-RCXT
+  INPUT   DEF_FILE  = design.def
+  OUTPUT  SPEF_FILE = design.spef.gz
+  PARAM   rc_corner = Cmax
+  EXECUTE run_rcxt.tcl
+  END
+  
+[511-SPEF2SDF.dfd]
+  FLOW    511-SPEF2SDF
+  INPUT   VLOG_FILE = design.v
+  INPUT   SPEF_FILE = design.spef.gz
+  OUTPUT  SDF_FILE  = design.sdf.gz
+  PARAM   op_corner = WCL
+  EXECUTE run_spef2sdf.tcl
+  END
+
+</pre>
+
 # Design Flow Definition File Format(<i>flow_ref_id</i>.dfd)
 <pre>
 FLOW	<i>flow_ref_id</i>
@@ -83,49 +145,6 @@ END FLOW
 + Extract quality indicator ..<t>
 <code> % make dqi </code>
 + Review DQI & Mark status done
-
-### Example: DEFINITION
-<pre>
-[510-RCXT.dfd]
-  FLOW    510-RCXT
-  INPUT   DEF_FILE  = design.def
-  OUTPUT  SPEF_FILE = design.spef.gz
-  PARAM   rc_corner = Cmax
-  EXECUTE run_rcxt.tcl
-  END
-  
-[511-SPEF2SDF.dfd]
-  FLOW    511-SPEF2SDF
-  INPUT   VLOG_FILE = design.v
-  INPUT   SPEF_FILE = design.spef.gz
-  OUTPUT  SDF_FILE  = design.sdf.gz
-  PARAM   op_corner = WCL
-  EXECUTE run_spef2sdf.tcl
-  END
-
-[521-DEF2SDF.dfd]
-  FLOW    521-DEF2SDF
-  INPUT   VLG_FILE  = design.v
-  INPUT   DEF_FILE  = design.def
-  OUTPUT  SPEF_FILE = design.spef.gz
-  OUTPUT  SDF_FILE  = design.sdf.gz
-  PARAM   rc_corner = Cmax_WCL
-  PARAM   op_corner = WC
-  
-  STEP 510-RCXT  rcxt_spef
-  + DEF_FILE  < $DEF_FILE
-  + SPEF_FILE > $SPEF_FILE
-  @ rc_corner = $rc_corner
-  ;
-  STEP 511-SPEF2SDF spef2sdf
-  + VLOG_FILE < $VLG_FILE
-  + SPEF_FILE < $SPEF_FILE
-  + SDF_FILE  > $SDF_FILE
-  @ op_corner = $op_corner
-  ;
-  
-  END
-</pre>
 
 ### Example: Flow Run Directory
 <pre>
